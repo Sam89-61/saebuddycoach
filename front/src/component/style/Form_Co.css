@@ -1,0 +1,18 @@
+body {
+    background-color: #F9FAFB;
+}
+
+h2 {
+    font: Poppins, bold;
+    font-size: 24px;
+    color: #1F2937;
+}
+
+button {
+    background-color: #4F46E5;
+    color: #F9FAFB;
+    border-radius: 12px;
+    text-align: center;
+    padding: 10px 20px;
+    font: Poppins, bold;
+}

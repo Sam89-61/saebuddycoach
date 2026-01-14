@@ -1,0 +1,229 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+.session-manager-container {
+    min-height: 100vh;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    color: #1F2937;
+    transition: background-color 0.3s ease;
+}
+
+.session-manager-container.rest-mode {
+    background-color: #4F46E5;
+    color: #F9FAFB;
+}
+
+.session-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E7EB;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: #4F46E5;
+    transition: width 0.5s ease;
+}
+
+/* CARTE EXERCICE */
+.exo-card {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+}
+
+.exo-header {
+    margin-bottom: 20px;
+}
+
+.exo-title {
+    color: #1F2937;
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+.exo-counter {
+    color: #6B7280;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.exo-details {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+    background-color: #F9FAFB;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.detail-item strong {
+    display: block;
+    font-size: 1.5em;
+    color: #4F46E5;
+}
+
+.detail-item span {
+    color: #6B7280;
+    font-size: 0.9em;
+}
+
+/* Mise en avant de la série courante */
+.highlight-serie strong {
+    color: #4F46E5;
+    font-size: 1.8em;
+    transition: transform 0.3s;
+}
+
+.exo-description {
+    text-align: left;
+    color: #6B7280;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px;
+}
+
+.btn-action {
+    width: 80%;
+    max-width: 300px;
+    padding: 15px;
+    border-radius: 50px;
+    border: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: #4F46E5;
+    color: #F9FAFB;
+}
+
+.btn-action:active {
+    transform: scale(0.98);
+}
+
+.btn-action:hover {
+    background-color: #4338CA;
+}
+
+.btn-disabled {
+    background-color: #D1D5DB !important;
+    color: #6B7280 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+
+
+.btn-skip {
+    background-color: #F9FAFB;
+    border: 2px solid #E5E7EB;
+    color: #6B7280;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-skip:hover {
+    background-color: #E5E7EB;
+}
+
+/* REPOS */
+.repos-container {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    width: 100%;
+}
+
+.session-manager-container.rest-mode .repos-container {
+    background-color: transparent;
+}
+
+.session-manager-container.rest-mode .repos-container h1,
+.session-manager-container.rest-mode .repos-container h2,
+.session-manager-container.rest-mode .repos-container h3 {
+    color: #F9FAFB;
+}
+
+.timer-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 8px solid #4F46E5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 30px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: #4F46E5;
+}
+
+.session-manager-container.rest-mode .timer-circle {
+    border-color: #F9FAFB;
+    color: #F9FAFB;
+}
+
+.next-exo-preview {
+    margin-bottom: 30px;
+    color: #6B7280;
+}
+
+.congrats-card button {
+    background-color: #4F46E5;
+    color: #F9FAFB;
+    width: auto;
+    min-width: 150px;
+    padding: 10px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    margin-top: 20px;
+}
+
+/* FIN */
+.session-finished-container {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.congrats-card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.congrats-card h1 {
+    color: #4CAF50;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
