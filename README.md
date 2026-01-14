@@ -12,7 +12,7 @@ Guide rapide pour installer et tester l'application BuddyCoach disponible en ver
 
 ### 1. Cloner le projet
 ```bash
-git clone <votre-repo>
+git clone github.com/Sam89-61/saebuddycoach
 cd BuddyCoach
 ```
 
