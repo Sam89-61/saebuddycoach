@@ -1,6 +1,6 @@
 # 🧪 Guide de Test - BuddyCoach
 
-Guide rapide pour installer et tester l'application BuddyCoach avec des données de test.
+Guide rapide pour installer et tester l'application BuddyCoach disponible en version WEB avec des données de test.
 
 ## 📋 Prérequis
 
