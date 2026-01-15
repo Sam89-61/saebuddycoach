@@ -140,7 +140,37 @@ const detectSquat = (keypoints) => {
 
     let feedback = "C'est bien !";
 
-    // Vérification du buste (pour éviter de se pencher trop en avant)
+    // 1. Vérification de la verticalité du dos (Check Absolu)
+    let backVerticalAngle = null;
+    
+    // Helper pour calculer l'angle par rapport à la verticale (0° = droit, 90° = horizontal)
+    const getVerticalOffset = (shoulder, hip) => {
+        if (!isKeypointValid(shoulder) || !isKeypointValid(hip)) return null;
+        // Vecteur Hanche -> Épaule
+        const dy = shoulder.y - hip.y; // Négatif si épaule au-dessus
+        const dx = shoulder.x - hip.x;
+        // Angle par rapport à la verticale (-PI/2)
+        const angleRad = Math.atan2(dy, dx);
+        const angleDeg = angleRad * (180 / Math.PI);
+        // Écart par rapport à -90° (verticale)
+        // Si angleDeg = -90 (droit) -> diff = 0
+        // Si angleDeg = 0 (horizontal) -> diff = 90
+        return Math.abs(angleDeg + 90);
+    };
+
+    const leftBackAngle = getVerticalOffset(leftShoulder, leftHip);
+    const rightBackAngle = getVerticalOffset(rightShoulder, rightHip);
+    
+    // On prend la moyenne si les deux sont valides, sinon l'un des deux
+    if (leftBackAngle !== null && rightBackAngle !== null) {
+        backVerticalAngle = (leftBackAngle + rightBackAngle) / 2;
+    } else if (leftBackAngle !== null) {
+        backVerticalAngle = leftBackAngle;
+    } else if (rightBackAngle !== null) {
+        backVerticalAngle = rightBackAngle;
+    }
+
+    // 2. Vérification angle Buste-Cuisses (Check Relatif existant)
     let torsoAngle = null;
     if (isKeypointValid(leftShoulder) && isKeypointValid(leftHip) && isKeypointValid(leftKnee)) {
         torsoAngle = calculateAngle(leftShoulder, leftHip, leftKnee);
@@ -148,7 +178,14 @@ const detectSquat = (keypoints) => {
         torsoAngle = calculateAngle(rightShoulder, rightHip, rightKnee);
     }
 
-    if (torsoAngle !== null) {
+    // Logique de feedback priorisée
+    
+    // Si le dos est trop penché (> 45° de la verticale), c'est une erreur critique
+    if (backVerticalAngle !== null && backVerticalAngle > 45) {
+        feedback = "Attention : Redressez votre dos (trop penché) !";
+    } 
+    // Sinon, on vérifie la fermeture de l'angle buste-cuisses
+    else if (torsoAngle !== null) {
         // Ajustement dynamique du seuil : en position basse (squat profond), on penche naturellement plus
         const torsoThreshold = avgKneeAngle < 100 ? 50 : 60;
         
@@ -165,7 +202,8 @@ const detectSquat = (keypoints) => {
             leftKneeAngle,
             rightKneeAngle,
             avgKneeAngle,
-            torsoAngle
+            torsoAngle,
+            backVerticalAngle
         }
     };
 };
