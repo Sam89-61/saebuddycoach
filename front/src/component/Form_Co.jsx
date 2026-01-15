@@ -66,7 +66,7 @@ function Form_Co() {
 
     return (
         <main className="flex items-center justify-center ">
-            <div className="w-full max-w-md pt-7 ">
+            <div className="w-full max-w-md pt-7 z-10 bg-white ">
                 <div className='flex justify-center py-2'>
                     <img src="../../media/logo.svg" alt="Logo" className="h-32 w-32 object-cover" />
                 </div>
