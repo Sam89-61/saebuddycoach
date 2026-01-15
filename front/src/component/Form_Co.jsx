@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import WaweEffect from './WaveEffect';
 function Form_Co() {
     const [formData, setFormData] = useState({
-        email: 'johndoe@test.com',
-        mot_de_passe: '12345678'
+        email: '',
+        mot_de_passe: ''
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
