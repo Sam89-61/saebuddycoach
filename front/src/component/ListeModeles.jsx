@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import './style/MonProgramme.css'; // Réutilisation du style existant
+import jambesImg from '../../media/seance/jambe.png';
+import abdoImg from '../../media/seance/buste.png';
+import cardioImg from '../../media/seance/cardio.png';
 
 function ListeModeles({ zone }) {
     const [modeles, setModeles] = useState([]);
@@ -40,6 +43,20 @@ function ListeModeles({ zone }) {
         window.location.href = `/seance-libre/${idModele}`;
     };
 
+    // Helper pour choisir l'image
+    const getImageForModel = (modele) => {
+        const tags = modele.tags_zone_corps || [];
+        // On cherche un match dans les tags
+        const tagsLower = tags.map(t => t.toLowerCase());
+        
+        if (tagsLower.some(t => t.includes('jambe') || t.includes('leg'))) return jambesImg;
+        if (tagsLower.some(t => t.includes('haut du corps') || t.includes('buste') || t.includes('pectoraux') || t.includes('torse'))) return abdoImg;
+        if (tagsLower.some(t => t.includes('bras') || t.includes('arm'))) return cardioImg;
+        
+        // Par défaut ou si tag cardio
+        return cardioImg;
+    };
+
     return (
         <div className="page-container">
             <Header />
@@ -61,6 +78,11 @@ function ListeModeles({ zone }) {
                 ) : (
                     modeles.map((modele) => (
                         <div key={modele.id} className="session-card">
+                            <img 
+                                src={getImageForModel(modele)} 
+                                alt={modele.nom} 
+                                className="session-image" 
+                            />
                             <div className="session-info">
                                 <span className="session-date">
                                     {modele.difficulte} • {modele.duree_minutes} min • {modele.tags_equipement ? modele.tags_equipement.join(', ') : 'Aucun matériel'}

@@ -187,20 +187,246 @@ async function insertScenario() {
     // =============================================
     console.log('💪 Insertion des exercices...');
     const exercices = [
-      { nom: "Pompes", diff: "Débutant", muscles: ["Pectoraux", "Triceps"], eq: idsEq["Aucun"] },
-      { nom: "Pompes Diamant", diff: "Intermédiaire", muscles: ["Pectoraux", "Triceps"], eq: idsEq["Aucun"] },
-      { nom: "Dev Couché Barre", diff: "Intermédiaire", muscles: ["Pectoraux"], eq: idsEq["Barre"] },
-      { nom: "Tractions", diff: "Intermédiaire", muscles: ["Dos", "Biceps"], eq: idsEq["Aucun"] },
-      { nom: "Squat Barre", diff: "Intermédiaire", muscles: ["Quadriceps", "Fessiers"], eq: idsEq["Barre"] },
-      { nom: "Squat au poids du corps", diff: "Débutant", muscles: ["Quadriceps", "Fessiers"], eq: idsEq["Aucun"] },
-      { nom: "Fentes", diff: "Débutant", muscles: ["Jambes", "Fessiers"], eq: idsEq["Aucun"] },
-      { nom: "Burpees", diff: "Avancé", muscles: ["Cardio", "Corps entier"], eq: idsEq["Aucun"] },
-      { nom: "Jumping Jacks", diff: "Débutant", muscles: ["Cardio"], eq: idsEq["Aucun"] },
-      { nom: "Planche", diff: "Débutant", muscles: ["Abdominaux"], eq: idsEq["Aucun"] }
+      // Pectoraux / Buste
+      { 
+        nom: "Pompes", 
+        diff: "Débutant", 
+        muscles: ["Pectoraux", "Triceps", "Deltoïdes"], 
+        eq: idsEq["Aucun"],
+        desc: "Allongez-vous face au sol, mains écartées de la largeur des épaules. Poussez sur vos mains pour soulever votre corps en gardant le dos droit. Descendez jusqu'à ce que votre poitrine frôle le sol, puis remontez."
+      },
+      { 
+        nom: "Pompes Diamant", 
+        diff: "Intermédiaire", 
+        muscles: ["Triceps", "Pectoraux"], 
+        eq: idsEq["Aucun"],
+        desc: "Placez vos mains l'une contre l'autre sous votre poitrine, formant un losange avec les pouces et index. Effectuez des pompes en gardant les coudes proches du corps pour cibler les triceps."
+      },
+      { 
+        nom: "Dev Couché Barre", 
+        diff: "Intermédiaire", 
+        muscles: ["Pectoraux", "Triceps", "Deltoïdes"], 
+        eq: idsEq["Barre"],
+        desc: "Allongé sur un banc, saisissez la barre avec une prise plus large que les épaules. Descendez la barre jusqu'à la poitrine en contrôlant le mouvement, puis repoussez-la vers le haut."
+      },
+      { 
+        nom: "Écarté Couché Haltères", 
+        diff: "Débutant", 
+        muscles: ["Pectoraux"], 
+        eq: idsEq["Haltères"],
+        desc: "Allongé sur un banc, un haltère dans chaque main au-dessus de la poitrine, bras légèrement fléchis. Ouvrez les bras sur les côtés jusqu'à sentir un étirement, puis revenez en position initiale."
+      },
+      { 
+        nom: "Dips", 
+        diff: "Intermédiaire", 
+        muscles: ["Triceps", "Pectoraux", "Deltoïdes"], 
+        eq: idsEq["Aucun"], // ou Station de dips si dispo, mis "Aucun" ou "Banc" pour la version banc
+        desc: "En appui sur deux barres parallèles ou le bord d'un banc, descendez votre corps en fléchissant les coudes jusqu'à 90 degrés, puis repoussez pour remonter."
+      },
+
+      // Dos
+      { 
+        nom: "Tractions", 
+        diff: "Avancé", 
+        muscles: ["Grand dorsal", "Biceps", "Trapèzes"], 
+        eq: idsEq["Aucun"],
+        desc: "Suspendu à une barre fixe, mains en pronation (paumes vers l'avant) écartées plus que les épaules. Tirez votre corps vers le haut jusqu'à ce que le menton dépasse la barre."
+      },
+      { 
+        nom: "Rowing Barre", 
+        diff: "Intermédiaire", 
+        muscles: ["Grand dorsal", "Trapèzes", "Biceps"], 
+        eq: idsEq["Barre"],
+        desc: "Debout, buste penché à 45°, genoux fléchis, dos droit. Tirez la barre vers le bas de votre ventre en resserrant les omoplates, puis relâchez doucement."
+      },
+      { 
+        nom: "Rowing Haltère Unilatéral", 
+        diff: "Débutant", 
+        muscles: ["Grand dorsal", "Biceps"], 
+        eq: idsEq["Haltères"],
+        desc: "Un genou et une main sur un banc, le dos plat. Tirez l'haltère avec l'autre main vers la hanche en gardant le coude près du corps."
+      },
+      { 
+        nom: "Superman", 
+        diff: "Débutant", 
+        muscles: ["Lombaires", "Fessiers"], 
+        eq: idsEq["Aucun"],
+        desc: "Allongé sur le ventre, bras tendus devant vous. Levez simultanément les bras et les jambes en contractant le bas du dos. Maintenez quelques secondes."
+      },
+
+      // Jambes / Fessiers
+      { 
+        nom: "Squat Barre", 
+        diff: "Intermédiaire", 
+        muscles: ["Quadriceps", "Fessiers", "Ischios"], 
+        eq: idsEq["Barre"],
+        desc: "Barre sur les trapèzes, pieds largeur d'épaules. Fléchissez les genoux et poussez les fesses en arrière comme pour vous asseoir, dos droit, puis remontez."
+      },
+      { 
+        nom: "Squat au poids du corps", 
+        diff: "Débutant", 
+        muscles: ["Quadriceps", "Fessiers"], 
+        eq: idsEq["Aucun"],
+        desc: "Debout, pieds largeur d'épaules. Descendez les hanches vers l'arrière et le bas, en gardant le dos droit et les talons au sol. Remontez."
+      },
+      { 
+        nom: "Fentes", 
+        diff: "Débutant", 
+        muscles: ["Quadriceps", "Fessiers", "Ischios"], 
+        eq: idsEq["Aucun"],
+        desc: "Faites un grand pas en avant et descendez le genou arrière vers le sol jusqu'à former deux angles de 90 degrés. Poussez sur la jambe avant pour revenir."
+      },
+      { 
+        nom: "Soulevé de Terre", 
+        diff: "Avancé", 
+        muscles: ["Ischios", "Lombaires", "Fessiers"], 
+        eq: idsEq["Barre"],
+        desc: "Barre au sol, pieds sous la barre. Saisissez la barre, dos plat, bras tendus. Poussez sur les jambes et redressez le buste pour soulever la charge."
+      },
+      { 
+        nom: "Presse à cuisses", 
+        diff: "Débutant", 
+        muscles: ["Quadriceps", "Fessiers"], 
+        eq: idsEq["Presse"], // Utilisation de l'équipement Presse
+        desc: "Installé sur la machine, placez vos pieds sur le plateau. Poussez le plateau jusqu'à tendre les jambes (sans verrouiller les genoux), puis revenez."
+      },
+      { 
+        nom: "Leg Extension", 
+        diff: "Débutant", 
+        muscles: ["Quadriceps"], 
+        eq: idsEq["Machine"],
+        desc: "Assis sur la machine, les boudins sur les chevilles. Tendez les jambes à l'horizontale en contractant les cuisses, puis relâchez."
+      },
+      { 
+        nom: "Leg Curl", 
+        diff: "Débutant", 
+        muscles: ["Ischios"], 
+        eq: idsEq["Machine"],
+        desc: "Allongé ou assis selon la machine, fléchissez les jambes pour ramener les talons vers les fesses en contractant l'arrière des cuisses."
+      },
+      { 
+        nom: "Mollets Debout", 
+        diff: "Débutant", 
+        muscles: ["Mollets"], 
+        eq: idsEq["Aucun"],
+        desc: "Debout sur la pointe des pieds (éventuellement sur une marche), montez le plus haut possible puis redescendez les talons vers le sol."
+      },
+
+      // Épaules
+      { 
+        nom: "Développé Militaire", 
+        diff: "Intermédiaire", 
+        muscles: ["Deltoïdes", "Triceps"], 
+        eq: idsEq["Barre"],
+        desc: "Debout ou assis, barre sur le haut de la poitrine. Développez la barre au-dessus de la tête jusqu'à extension complète des bras, puis redescendez."
+      },
+      { 
+        nom: "Élévations Latérales", 
+        diff: "Débutant", 
+        muscles: ["Deltoïdes"], 
+        eq: idsEq["Haltères"],
+        desc: "Debout, un haltère dans chaque main le long du corps. Levez les bras sur les côtés jusqu'à la hauteur des épaules, coudes légèrement fléchis."
+      },
+      { 
+        nom: "Oiseau", 
+        diff: "Intermédiaire", 
+        muscles: ["Deltoïdes postérieurs", "Rhomboides"], 
+        eq: idsEq["Haltères"],
+        desc: "Buste penché en avant, dos plat. Levez les haltères sur les côtés comme des ailes, en serrant les omoplates en haut du mouvement."
+      },
+
+      // Bras
+      { 
+        nom: "Curl Barre", 
+        diff: "Débutant", 
+        muscles: ["Biceps"], 
+        eq: idsEq["Barre"],
+        desc: "Debout, barre en mains supination (paumes vers le haut). Fléchissez les coudes pour monter la barre vers les épaules sans bouger le buste."
+      },
+      { 
+        nom: "Curl Marteau", 
+        diff: "Débutant", 
+        muscles: ["Biceps", "Avant-bras"], 
+        eq: idsEq["Haltères"],
+        desc: "Debout, haltères en prise neutre (pouces vers le haut). Montez les haltères alternativement vers l'épaule opposée ou directement devant."
+      },
+      { 
+        nom: "Extension Triceps Poulie", 
+        diff: "Débutant", 
+        muscles: ["Triceps"], 
+        eq: idsEq["Poulie"],
+        desc: "Face à la poulie haute, saisissez la corde ou la barre. Gardez les coudes collés au corps et tendez les bras vers le bas."
+      },
+      { 
+        nom: "Barre au Front", 
+        diff: "Intermédiaire", 
+        muscles: ["Triceps"], 
+        eq: idsEq["Barre"],
+        desc: "Allongé sur un banc, barre tenue bras tendus. Fléchissez les coudes pour amener la barre vers le front, puis remontez."
+      },
+
+      // Cardio / Abdo / Gainage
+      { 
+        nom: "Burpees", 
+        diff: "Avancé", 
+        muscles: ["Cardio", "Corps entier"], 
+        eq: idsEq["Aucun"],
+        desc: "Enchaînez : squat, planche, pompe, ramené de pieds et saut vertical extension complète. Un exercice complet et intense."
+      },
+      { 
+        nom: "Jumping Jacks", 
+        diff: "Débutant", 
+        muscles: ["Cardio"], 
+        eq: idsEq["Aucun"],
+        desc: "Debout pieds joints. Sautez en écartant les jambes et en levant les bras au-dessus de la tête, puis revenez en position initiale en sautant."
+      },
+      { 
+        nom: "Mountain Climbers", 
+        diff: "Intermédiaire", 
+        muscles: ["Cardio", "Abdominaux"], 
+        eq: idsEq["Aucun"],
+        desc: "En position de planche, ramenez alternativement et rapidement les genoux vers la poitrine, comme si vous grimpiez."
+      },
+      { 
+        nom: "Planche", 
+        diff: "Débutant", 
+        muscles: ["Abdominaux", "Gainage"], 
+        eq: idsEq["Aucun"],
+        desc: "En appui sur les avant-bras et les orteils, corps aligné de la tête aux talons. Contractez abdos et fessiers pour maintenir la position sans cambrer."
+      },
+      { 
+        nom: "Crunch", 
+        diff: "Débutant", 
+        muscles: ["Abdominaux"], 
+        eq: idsEq["Aucun"],
+        desc: "Allongé dos au sol, jambes fléchies. Enroulez le buste vers l'avant en contractant les abdos, sans tirer sur la nuque avec les mains."
+      },
+      { 
+        nom: "Relevé de Jambes", 
+        diff: "Intermédiaire", 
+        muscles: ["Abdominaux inférieurs"], 
+        eq: idsEq["Aucun"], // ou Barre pour suspendu
+        desc: "Allongé sur le dos ou suspendu à une barre, levez les jambes tendues ou fléchies jusqu'à ce que le bassin se décolle légèrement."
+      },
+      { 
+        nom: "Russian Twist", 
+        diff: "Intermédiaire", 
+        muscles: ["Obliques"], 
+        eq: idsEq["Aucun"], // ou Médecine ball / Haltère
+        desc: "Assis, buste incliné en arrière, pieds décollés. Tournez le buste de gauche à droite pour toucher le sol de chaque côté."
+      },
+      { 
+        nom: "Corde à sauter", 
+        diff: "Intermédiaire", 
+        muscles: ["Cardio", "Mollets"], 
+        eq: idsEq["Aucun"], // Techinquement une corde mais souvent 'Aucun' dans la base simplifiée ou ajout d'un item 'Corde'
+        desc: "Sautez par-dessus la corde à pieds joints ou alternés. Gardez un rythme régulier et les coudes près du corps."
+      }
     ];
     const exoMap = new Map();
     for (const exo of exercices) {
-      const res = await client.query(`INSERT INTO exos (nom_exercice, description, difficulte, muscle_cibles, url_video_exemple, img, id_equipement) VALUES ($1, 'Desc', $2, $3, 'url', '["default.jpg"]'::json, $4) RETURNING id;`, [exo.nom, exo.diff, JSON.stringify(exo.muscles), exo.eq]);
+      // Utilisation de la description fournie (exo.desc) au lieu de 'Desc' générique
+      const res = await client.query(`INSERT INTO exos (nom_exercice, description, difficulte, muscle_cibles, url_video_exemple, img, id_equipement) VALUES ($1, $2, $3, $4, 'url', '["default.jpg"]'::json, $5) RETURNING id;`, [exo.nom, exo.desc, exo.diff, JSON.stringify(exo.muscles), exo.eq]);
       exoMap.set(exo.nom, res.rows[0].id);
     }
 
@@ -248,17 +474,17 @@ async function insertScenario() {
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 1, 3, 15);`, [modelFullBody.rows[0].id, exoMap.get('Pompes')]);
 
     // Modèle Buste
-    const modelBuste = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Séance Buste', 'Travail complet du buste et du haut du corps', '["buste"]', '["Aucun"]', 45, 'Débutant') RETURNING id;`);
+    const modelBuste = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Séance Haut du Corps', 'Travail complet du buste et du haut du corps', '["Haut du Corps"]', '["Aucun"]', 45, 'Débutant') RETURNING id;`);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 1, 4, 15);`, [modelBuste.rows[0].id, exoMap.get('Pompes')]);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 2, 3, 8);`, [modelBuste.rows[0].id, exoMap.get('Tractions')]);
 
     // Modèle Cardio
-    const modelCardio = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Cardio Intense', 'Brûlez des calories rapidement', '["cardio", "Corps entier"]', '["Aucun"]', 20, 'Intermédiaire') RETURNING id;`);
+    const modelCardio = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Cardio Intense', 'Brûlez des calories rapidement', '["Cardio", "Corps entier"]', '["Aucun"]', 20, 'Intermédiaire') RETURNING id;`);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 1, 3, 30);`, [modelCardio.rows[0].id, exoMap.get('Jumping Jacks')]);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 2, 3, 10);`, [modelCardio.rows[0].id, exoMap.get('Burpees')]);
 
     // Modèle Jambes
-    const modelJambes = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Séance Jambes', 'Focus sur le bas du corps', '["jambe"]', '["Aucun", "Barre"]', 40, 'Intermédiaire') RETURNING id;`);
+    const modelJambes = await client.query(`INSERT INTO modeles_seance (nom, description, tags_zone_corps, tags_equipement, duree_minutes, difficulte) VALUES ('Séance Jambes', 'Focus sur le bas du corps', '["Jambe"]', '["Aucun", "Barre"]', 40, 'Intermédiaire') RETURNING id;`);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 1, 4, 12);`, [modelJambes.rows[0].id, exoMap.get('Squat Barre')]);
     await client.query(`INSERT INTO modeles_seance_exos (id_modele_seance, id_exo, ordre, series, repetitions) VALUES ($1, $2, 2, 3, 15);`, [modelJambes.rows[0].id, exoMap.get('Fentes')]);
 

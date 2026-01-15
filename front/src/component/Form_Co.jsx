@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import WaweEffect from './WaveEffect';
 function Form_Co() {
     const [formData, setFormData] = useState({
-        email: '',
-        mot_de_passe: ''
+        email: 'johndoe@test.com',
+        mot_de_passe: '12345678'
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -145,6 +145,15 @@ function Form_Co() {
                                 className="font-semibold text-indigo-600 hover:text-indigo-700 transition duration-200"
                             >
                                 Inscrivez-vous
+                            </a>
+                        </p>
+                        <p className="text-sm text-gray-600">
+                            
+                            <a
+                                href="/login"
+                                className="font-semibold text-indigo-600 hover:text-indigo-700 transition duration-200"
+                            >
+                                Mot de passe oublié ?{' '}
                             </a>
                         </p>
                     </div>

@@ -61,8 +61,11 @@ export const drawKeypoints = (keypoints, ctx, options = {}) => {
         minConfidence = 0.3
     } = options;
 
-    keypoints.forEach((keypoint) => {
-        if (keypoint.score > minConfidence) {
+    keypoints.forEach((keypoint, index) => {
+      // On ignore les points du visage : nez (0), yeux (1, 2) et oreilles (3, 4)
+      if (index >= 0 && index <= 4) return; 
+
+      if (keypoint.score > minConfidence) {
             const { x, y } = keypoint;
             ctx.beginPath();
             ctx.arc(x, y, radius, 0, 2 * Math.PI);

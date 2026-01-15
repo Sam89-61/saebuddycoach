@@ -288,7 +288,7 @@ function ScanExo() {
                                             >
                                                 <button 
                                                     onClick={toggleFullScreen}
-                                                    className="absolute top-4 right-4 z-50 px-3 py-1 bg-black/50 hover:bg-black/70 text-white rounded-lg backdrop-blur-sm transition-colors text-sm font-bold"
+                                                    className="absolute top-4 right-4 z-1 px-3 py-1 bg-black/50 hover:bg-black/70 text-white rounded-lg backdrop-blur-sm transition-colors text-sm font-bold"
                                                     title={isFullScreen ? "Quitter plein écran" : "Plein écran"}
                                                 >
                                                     {isFullScreen ? 'QUITTER' : 'PLEIN ÉCRAN'}

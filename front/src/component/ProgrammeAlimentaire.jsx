@@ -238,7 +238,7 @@ const ProgrammeAlimentaire = () => {
                                                                     </div>
 
                                                                     <p className="text-sm text-gray-500 mb-2">
-                                                                        Portion : <span className="font-medium text-gray-700">{item.quantite}g</span>
+                                                                        Portion : <span className="font-medium text-gray-700">{item.quantite}</span>
                                                                     </p>
 
                                                                     <div className="flex flex-wrap gap-2 text-[10px] sm:text-xs text-gray-500 font-medium items-center">

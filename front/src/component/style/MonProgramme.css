@@ -45,6 +45,15 @@
     transition: all 0.3s ease;
 }
 
+.session-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+    border: 1px solid #eee;
+}
+
 .session-card:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -62,6 +71,10 @@
     font-size: 0.8em;
     border-radius: 6px;
     font-weight: 500;
+}
+
+.session-info {
+    flex: 1; /* Prend l'espace restant */
 }
 
 .session-info h3 {

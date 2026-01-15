@@ -132,7 +132,28 @@ class AuthController {
 
     deleteUser = withTransaction(async (req, res, client) => {
         const userId = req.user.id;
+
+        // 1. Supprimer les dépendances directes (qui n'ont pas de CASCADE)
+        // Note: La suppression du Profil cascade déjà sur Programmes -> Sessions -> etc.
+        
+        // Supprimer la Mascotte
+        await client.query('DELETE FROM mascotte WHERE id_utilisateur = $1', [userId]);
+        
+        // Supprimer les Records (Historique)
+        await client.query('DELETE FROM record WHERE id_utilisateur = $1', [userId]);
+        
+        // Supprimer les Participations aux événements
+        await client.query('DELETE FROM participation WHERE id_utilisateur = $1', [userId]);
+        
+        // Supprimer les scores de classement
+        await client.query('DELETE FROM classement_user WHERE id_utilisateur = $1', [userId]);
+
+        // Supprimer le Profil (Déclenche la suppression en cascade des programmes)
+        await client.query('DELETE FROM profil WHERE id_utilisateur = $1', [userId]);
+
+        // 2. Supprimer l'utilisateur
         await User.delete(userId, client);
+        
         res.status(200).json({ message: 'Compte supprimé avec succès' });
     });
 

@@ -47,6 +47,22 @@ function ProfilPage() {
         setLoading(true);
         setMessage({ type: '', text: '' });
 
+        // On construit le payload (les données à envoyer) en fonction de l'onglet actif
+        // Cela permet de ne pas envoyer de champs vides (comme le mot de passe) quand on modifie juste l'email
+        let payload = {};
+
+        if (activeTab === 'info') {
+            payload = {
+                pseudo: formData.pseudo,
+                email: formData.email
+            };
+        } else if (activeTab === 'security') {
+            payload = {
+                currentPassword: formData.currentPassword,
+                newPassword: formData.newPassword
+            };
+        }
+
         try {
             const token = localStorage.getItem('token');
             const res = await fetch('/api/auth/update', {
@@ -55,7 +71,7 @@ function ProfilPage() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(payload)
             });
             const data = await res.json();
 

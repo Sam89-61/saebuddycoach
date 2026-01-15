@@ -5,6 +5,7 @@ import silhouette from '../../media/silhouette.png';
 import jambesImg from '../../media/seance/jambe.png';
 import abdoImg from '../../media/seance/buste.png';
 import cardioImg from '../../media/seance/cardio.png';
+import bouffe from '../../media/bouffe.png';
 
 function Accueil() {
     const [userName] = useState(() => {
@@ -40,9 +41,9 @@ function Accueil() {
     const getImageForMuscle = (muscle) => {
         const muscleLower = muscle.toLowerCase();
         if (muscleLower.includes('jambe') || muscleLower.includes('leg')) return jambesImg;
-        if (muscleLower.includes('abdo') || muscleLower.includes('buste') || muscleLower.includes('torse')) return abdoImg;
-        if (muscleLower.includes('Bras') || muscleLower.includes('arm')) return cardioImg;
-        if (muscleLower.includes('Pectoraux') || muscleLower.includes('chest')) return abdoImg;
+        if (muscleLower.includes('haut du corps') || muscleLower.includes('torse') || muscleLower.includes('buste')) return abdoImg;
+        if (muscleLower.includes('bras') || muscleLower.includes('arm')) return cardioImg;
+        if (muscleLower.includes('pectoraux') || muscleLower.includes('chest')) return abdoImg;
         return cardioImg; // Image par défaut
     };
 
@@ -62,7 +63,7 @@ function Accueil() {
                             alt="Programme"
                             className="w-12 h-12 filter brightness-0 invert"
                         />
-                        <span className="text-2xl font-bold">Programme Sport</span>
+                        <span className="text-xl font-bold">Programme Sport</span>
                     </div>
                 </button>
                 <button
@@ -71,11 +72,11 @@ function Accueil() {
                 >
                     <div className="flex items-center justify-center gap-3">
                         <img
-                            src={silhouette}
+                            src={bouffe}
                             alt="Programme"
-                            className="w-12 h-12 filter brightness-0 invert"
+                            className="w-10 h-10 filter brightness-0 invert"
                         />
-                        <span className="text-2xl font-bold">Programme Alimentaire</span>
+                        <span className="text-xl font-bold">Programme Alimentaire</span>
                     </div>
                 </button>
 

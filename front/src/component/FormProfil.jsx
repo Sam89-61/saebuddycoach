@@ -217,8 +217,8 @@ function Form() {
                 );
             case 2: return <RadioStep title="Quel est votre sexe ?" name="sex" value={formData.sex} options={["Homme", "Femme", "Autre"]} onChange={handleChange} />;
             case 3: return <NumberStep title="Quel est votre âge ?" name="age" value={formData.age} min="10" max="100" subtitle="Entre 10 et 100 ans" onChange={handleChange} />;
-            case 4: return <NumberStep title="Quel est votre poids ?" name="poids" value={formData.poids} min="30" max="300" unit="kg" subtitle="Entre 30 et 300 kg" onChange={handleChange} />;
-            case 5: return <NumberStep title="Quelle est votre taille ?" name="taille" value={formData.taille} min="100" max="250" unit="cm" subtitle="Entre 100 et 250 cm" onChange={handleChange} />;
+            case 4: return <NumberStep title="Votre poids ?" name="poids" value={formData.poids} min="30" max="300" unit="kg" subtitle="Entre 30 et 300 kg" onChange={handleChange} />;
+            case 5: return <NumberStep title="Votre taille ?" name="taille" value={formData.taille} min="100" max="250" unit="cm" subtitle="Entre 100 et 250 cm" onChange={handleChange} />;
             case 6: return <RadioStep title="Quel est votre niveau sportif ?" name="niveau" value={formData.niveau} options={["Débutant", "Intermédiaire", "Avancer"]} onChange={handleChange} />;
             case 7: return <RadioStep title="Fréquence d'entraînement souhaitée" name="frequence" value={formData.frequence} options={[1, 2, 3, 4, 5]} suffix=" fois / semaine" onChange={handleChange} />;
             case 8: return <CheckboxStep title="Problèmes médicaux particuliers" selectedValues={formData.problemes_medical} options={['Problèmes cardiaques', 'Asthme', 'Hypertension', "Aucun"]} onToggle={(e) => handleCheckboxChange(e, 'problemes_medical')} />;
